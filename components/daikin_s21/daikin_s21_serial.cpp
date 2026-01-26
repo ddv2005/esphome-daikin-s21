@@ -119,7 +119,7 @@ void DaikinSerial::loop() {
               this->response.pop_back();
               uint8_t calc_checksum = std::reduce(this->response.begin(), this->response.end(), 0U);
               // protocol avoids special control characters in the message body by applying an offset
-              if ((calc_checksum == STX) || (calc_checksum == ETX) || (calc_checksum == ACK)) {
+              if ((calc_checksum == STX) || (calc_checksum == ETX) || (calc_checksum == ACK) || (calc_checksum == NACK)) {
                 calc_checksum += 2;
               }
               if (calc_checksum == checksum) {
